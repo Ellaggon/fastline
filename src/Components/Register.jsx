@@ -1,15 +1,13 @@
-import { useState } from "react";
+import { useContext } from "react";
+import { AuthContext, useAuth } from "../hooks/useContext";
 import { useModal } from "../hooks/useModal";
 import Modal from "./Modal";
-import { useAuth } from "../hooks/useContext";
 
 const Register = () => {
   const auth = useAuth();
-  
-  const [isOpenRegister, openRegister, closeRegister] = useModal(false);
-
-  const [emailRegister, setEmailRegister] = useState("");
-  const [passwordRegister, setPasswordRegister] = useState("");
+  const { emailRegister, setEmailRegister, passwordRegister, setPasswordRegister } =
+    useContext(AuthContext); //registerContext
+  const [isOpenRegister, openRegister, closeRegister] = useModal(false); // useModal
 
   const handleRegister = (e) => {
     e.preventDefault();

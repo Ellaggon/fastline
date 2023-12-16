@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
-import { CartContext } from "../hooks/useContext";
+import { AuthContext } from "../hooks/useContext";
 import Layout from "./Layout";
 import Register from "./Register";
 import Login from "./LogIn";
 
 const Navbar = () => {
-  const context = useContext(CartContext);
+  const context = useContext(AuthContext);
 
   return (
     <Layout>
@@ -16,7 +16,7 @@ const Navbar = () => {
         </div>
         <ul className="flex gap-4">
           {context.user && (
-            <li className="py-1">
+            <li className="py-1 rounded-lg border hover:border-cyan-800 px-3">
               <NavLink to="/my-account">Mi cuenta</NavLink>
             </li>
           )}

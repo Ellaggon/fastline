@@ -9,19 +9,35 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 
-export const CartContext = createContext();
+export const AuthContext = createContext();
 
 // Creacion del hook useAuth y manejo del error
 export const useAuth = () => {
-  const context = useContext(CartContext);
-  if(!context) {
+  const context = useContext(AuthContext);
+  if (!context) {
     console.log("error creating auth context");
   }
   return context;
 };
 
+export const AuthProvider = ({ children }) => {
+  // List es un hook que reune todos las publicaciones en el home
+  const [list, setList] = useState([]);
+  // Item es un hook que reune las publicaciones de la API de platzi en el home
+  const [item, setItem] = useState(null);
 
-export const CartProvider = ({ children }) => {
+  const [user, setUser] = useState("");
+
+  // MANEJO del estado del REGISTRO
+  const [emailRegister, setEmailRegister] = useState("");
+  const [passwordRegister, setPasswordRegister] = useState("");
+
+  // Hooks para la captura de información
+  const [emailLogin, setEmailLogin] = useState("");
+  const [passwordLogin, setPasswordLogin] = useState("");
+
+  // console.log("item: ", item)
+
   // Funciones de firebase Auth: REGISTER / LOGIN / LOGIN-GOOGLE / LOGOUT
   const register = async (email, password) => {
     const res = await createUserWithEmailAndPassword(auth, email, password);
@@ -37,28 +53,23 @@ export const CartProvider = ({ children }) => {
   };
   const logout = async () => {
     const res = await signOut(auth);
-    console.log(res);
   };
 
   // Este método se utiliza para escuchar cambios en el estado de autenticación del usuario.
-  const [user, setUser] = useState("");
   useEffect(() => {
     const suscribed = onAuthStateChanged(auth, (currentUser) => {
-      if (!currentUser){
+      if (!currentUser) {
         console.log("No hay usuario suscrito");
         setUser("");
       } else {
         setUser(currentUser);
       }
-    })
+    });
     return () => suscribed();
-  }, [])
-
-  const [list, setList] = useState([]);
-  const [item, setItem] = useState(null);
+  }, []);
 
   return (
-    <CartContext.Provider
+    <AuthContext.Provider
       value={{
         register,
         login,
@@ -70,9 +81,17 @@ export const CartProvider = ({ children }) => {
         setList,
         item,
         setItem,
+        emailRegister,
+        setEmailRegister,
+        passwordRegister,
+        setPasswordRegister,
+        emailLogin,
+        passwordLogin,
+        setEmailLogin,
+        setPasswordLogin,
       }}
     >
       {children}
-    </CartContext.Provider>
+    </AuthContext.Provider>
   );
 };

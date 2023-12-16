@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useAuth } from "../hooks/useContext";
+import { useContext } from "react";
+import { AuthContext, useAuth } from "../hooks/useContext";
 import { analytics } from "../Helper/Firebase.config";
 import { useModal } from "../hooks/useModal";
 import Modal from "./Modal";
@@ -7,19 +7,15 @@ import Modal from "./Modal";
 const Login = () => {
   const auth = useAuth();
   // Destructuracion de usuario para la inyeccion del email al renderizado
-  const { email } = auth.user;
-  
+  const { emailLogin, setEmailLogin, passwordLogin, setPasswordLogin } = useContext(AuthContext);
   const [isOpenLogin, openLogin, closeLogin] = useModal(false);
-
-  // Hooks para la captura de información
-  const [emailLogin, setEmailLogin] = useState("");
-  const [passwordLogin, setPasswordLogin] = useState("");
 
   const handleLogin = (e) => {
     e.preventDefault();
     auth.login(emailLogin, passwordLogin);
     console.log(analytics);
   };
+  // console.log("auth", auth.login)
   const handleLoginGoogle = (e) => {
     e.preventDefault();
     auth.loginWithGoogle(emailLogin, passwordLogin);

@@ -1,5 +1,5 @@
 import { BrowserRouter, useRoutes } from "react-router-dom";
-import { CartProvider } from "../hooks/useContext";
+import { AuthProvider } from "../hooks/useContext";
 import Home from "./Home";
 import NotFound from "./NotFound";
 import MyAccount from "./MyAccount";
@@ -18,11 +18,11 @@ const AppRoutes = () => {
 
 const App = () => {
   return (
-    <CartProvider>
+    <AuthProvider>
       <BrowserRouter>
         <AppRoutes />
       </BrowserRouter>
-    </CartProvider>
+    </AuthProvider>
   );
 };
 
