@@ -1,4 +1,4 @@
-import { auth } from "../Helper/Firebase.config";
+import { auth } from "../Helper/firebase.config";
 import { createContext, useContext, useEffect, useState } from "react";
 import {
   createUserWithEmailAndPassword,
@@ -55,6 +55,7 @@ export const AuthProvider = ({ children }) => {
     const res = await signOut(auth);
   };
 
+  console.log(list);
   // Este método se utiliza para escuchar cambios en el estado de autenticación del usuario.
   useEffect(() => {
     const suscribed = onAuthStateChanged(auth, (currentUser) => {

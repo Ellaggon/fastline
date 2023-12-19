@@ -46,7 +46,9 @@ const Home = () => {
     <Layout>
       <Navbar />
       <article className="flex flex-col items-center w-full px-3">
-        {renderView()}
+        {
+          renderView()
+        }
       </article>
       {item?.map((el) => (
         <Card className="flex-col-reverse" key={el.id} {...el} />

@@ -1,13 +1,14 @@
 import { useContext } from "react";
 import { AuthContext, useAuth } from "../hooks/useContext";
-import { analytics } from "../Helper/Firebase.config";
+import { analytics } from "../Helper/firebase.config";
 import { useModal } from "../hooks/useModal";
 import Modal from "./Modal";
 
 const Login = () => {
   const auth = useAuth();
   // Destructuracion de usuario para la inyeccion del email al renderizado
-  const { emailLogin, setEmailLogin, passwordLogin, setPasswordLogin } = useContext(AuthContext);
+  const { emailLogin, setEmailLogin, passwordLogin, setPasswordLogin } =
+    useContext(AuthContext);
   const [isOpenLogin, openLogin, closeLogin] = useModal(false);
 
   const handleLogin = (e) => {
