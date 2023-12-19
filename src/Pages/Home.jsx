@@ -3,7 +3,7 @@ import Navbar from "../Components/Navbar";
 import Layout from "../Components/Layout";
 import Card from "../Components/Card";
 import { collection, getDocs, getFirestore } from "firebase/firestore";
-import { appFirebase } from "../Helper/Firebase.config";
+import { appFirebase } from "../Helper/firebase.config"; 
 import CardPost from "../Components/CardPost";
 import { AuthContext } from "../hooks/useContext";
 import Loader from "../Components/Loader";
