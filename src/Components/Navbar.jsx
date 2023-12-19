@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { AuthContext } from "../hooks/useContext";
 import Layout from "./Layout";
 import Register from "./Register";
-import Login from "./LogIn";
+import Login from "./Login";
 
 const Navbar = () => {
   const context = useContext(AuthContext);
