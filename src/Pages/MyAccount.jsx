@@ -1,18 +1,9 @@
 import { AuthContext, useAuth } from "../hooks/useContext";
 import { NavLink } from "react-router-dom";
-import Layout from "../Components/Layout";
-import {
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  getFirestore,
-} from "firebase/firestore";
-import { appFirebase } from "../Helper/firebase.config";
 import { useContext } from "react";
+import Layout from "../Components/Layout";
 import Navbar from "../Components/Navbar";
-import OrdersCard from "../Components/Orderscard";
-import Loader from "../Components/Loader";
+import OrdersCard from "../Components/OrdersCard";
 
 const MyAccount = () => {
   const auth = useAuth();
